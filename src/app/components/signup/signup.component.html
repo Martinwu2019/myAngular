@@ -1,0 +1,47 @@
+<div class="col-8 mx-auto mt-5">
+    <div class="card mx-auto">
+        <div class="card-header">
+            Register here
+        </div>
+        <div class="card-body">
+            <form #registrationForm="ngForm" (ngSubmit)="submitSignup()">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="form.name" required>
+                </div>
+                <div class="alert alert-danger" [hidden]="!error.name">
+                    {{error.name}}
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" [(ngModel)]="form.email" required>
+                </div>
+                <div class="alert alert-danger" [hidden]="!error.email">
+                    {{error.email}}
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password"
+                        [(ngModel)]="form.password" required>
+                </div>
+                <div class="alert alert-danger" [hidden]="!error.password">
+                    {{error.password}}
+                </div>
+                <div class="mb-3">
+                    <label for="cpassword" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="cpassword" name="password_confirmation"
+                        [(ngModel)]="form.password_confirmation" required>
+                </div>
+                <div class="alert alert-danger" [hidden]="!error.password_confirmation">
+                    {{error.password_confirmation}}
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="!registrationForm.valid">Submit</button>
+            </form>
+            <!-- Success message -->
+            <div *ngIf="successMessage" class="alert alert-success">
+                {{ successMessage }}
+            </div>
+
+        </div>
+    </div>
+</div>
