@@ -30,7 +30,7 @@ export class TokenService {
       const payload = this.payload(token);
       if (payload) { // if the token has a valid payload, 
         // and if the issuer of the token is "http://127.0.0.1:8000/api/login"; return true.
-        return (payload.iss === "http://127.0.0.1:8000/api/login") ? true : false; 
+        return (payload.iss === "http://20.188.117.53:8080/api/login") ? true : false; 
       }
     }
     return false;

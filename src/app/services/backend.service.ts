@@ -5,7 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class BackendService {
-  private apiUrl = 'http://127.0.0.1:8000/api';
+  // private apiUrl = 'http://127.0.0.1:8000/api';
+  private apiUrl = 'http://20.188.117.53:8080/api';
 
   constructor(private http: HttpClient) { }
 
