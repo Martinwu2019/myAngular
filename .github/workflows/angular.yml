@@ -6,9 +6,9 @@ name: Angular Build
 # {1}
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   angular:
@@ -28,15 +28,19 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          cache: "npm"
           cache-dependency-path: package-lock.json
 
       # {4}
       - name: Install dependencies
         run: npm ci
       # {5}
-      - name: Run tests
-        run: npm run test:ci
+      - name: Run Unit Tests
+        run: npm run ci:test
+
       # {6}
-      - name: Build
-        run: npm run build
+      - name: Clean Distribution Directory
+        run: npm run ci:clean
+      # {7}
+      - name: Build Application
+        run: npm run ci:build
