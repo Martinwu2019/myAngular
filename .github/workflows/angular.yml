@@ -61,5 +61,5 @@ jobs:
             nvm use 20
             npm install
             npm run build
-            pm2 restart app-pm2.json
+            pm2 start /usr/local/bin/ng -- serve
 
