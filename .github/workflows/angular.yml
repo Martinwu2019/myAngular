@@ -69,4 +69,11 @@ jobs:
             sudo chown -R www-data:www-data /var/www/html/myAngular/dist
             sudo chown -R azureuser:azureuser /var/www/html/myAngular/dist
             sudo chmod -R 755 /var/www/html/myAngular/dist
+
+            sudo find /var/www/html/myAngular -type d -exec chmod 755 {} \;
+            sudo find /var/www/html/myAngular -type f -exec chmod 644 {} \;
+
+            sudo chmod -R 755 /var/www/html/myAngular/dist/my-ang/browser/
+            sudo chown -R www-data:www-data /var/www/html/myAngular/dist/my-ang/browser/
+
             sudo systemctl restart nginx
