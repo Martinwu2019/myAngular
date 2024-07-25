@@ -60,6 +60,5 @@ jobs:
             git pull
             nvm use 20
             npm install
-            npm run build
             pm2 start /usr/local/bin/ng -- serve
 
