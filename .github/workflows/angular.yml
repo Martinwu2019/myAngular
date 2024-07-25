@@ -56,8 +56,10 @@ jobs:
           port: ${{ secrets.PORT }} # port of the server, often 22
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /path/to/your/project # navigate to your project directory
+            cd /var/www/html/myAngular # navigate to your project directory
             git pull
             npm install
             npm run build
+            which pm2 || npm install -g pm2 # Install pm2 if not available
             pm2 restart app-pm2.json
+
