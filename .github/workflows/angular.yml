@@ -61,8 +61,6 @@ jobs:
             sudo git fetch --all
             sudo git pull origin main
             ng build
-            sudo rm -rf /var/www/html/myAngular/dist/my-ang/browser/*
-            sudo cp -r dist/my-ang/browser/* /var/www/html/myAngular/dist/my-ang/browser/
             sudo chown -R www-data:www-data /var/www/html/myAngular
             # sudo chown -R azureuser:azureuser /var/www/html/myAngular
             sudo chmod -R 755 /var/www/html/myAngular
