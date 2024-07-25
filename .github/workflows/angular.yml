@@ -57,4 +57,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /var/www/html/myAngular # navigate to your project directory
-            git pull
+            sudo git fetch --all
+            sudo git pull origin main
