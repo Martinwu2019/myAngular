@@ -1,9 +1,8 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: Angular Build
+name: Angular Build and Deploy
 
-# {1}
 on:
   push:
     branches: ["main"]
@@ -12,35 +11,52 @@ on:
 
 jobs:
   angular:
-    name: Angular Build
+    name: Angular Build and Deploy
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [18.x, 20.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
-      # {2}
+      # {1} Checkout the source code
       - name: Checkout the source code
         uses: actions/checkout@v3
 
-      # {3}
-      - name: Setup Node.js $
+      # {2} Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
           cache-dependency-path: package-lock.json
 
-      # {4}
+      # {3} Install dependencies
       - name: Install dependencies
         run: npm ci
-      # {5}
-      # - name: Run Unit Tests
-        # run: npm run test
 
-      # {6}
+      # {4} Clean Distribution Directory
       - name: Clean Distribution Directory
         run: npm run ci:clean
-      # {7}
+
+      # {5} Build Application
       - name: Build Application
         run: npm run ci:build
+
+      # {6} Set up SSH Agent with private key
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.KEY }}
+
+      # {7} Deploy to server using SSH
+      - name: executing remote ssh commands using key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }} # hostname of the server
+          username: ${{ secrets.USERNAME }} # username to login to the server
+          port: ${{ secrets.PORT }} # port of the server, often 22
+          script: |
+            cd /path/to/your/project # navigate to your project directory
+            git pull
+            npm install
+            npm run build
+            pm2 restart app-pm2.json
