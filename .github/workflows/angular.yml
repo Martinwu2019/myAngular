@@ -60,3 +60,6 @@ jobs:
             sudo git stash
             sudo git fetch --all
             sudo git pull origin main
+            sudo rm -rf /var/www/html/myAngular/dist/my-ang/browser/*
+            sudo cp -r dist/my-ang/browser/* /var/www/html/myAngular/dist/my-ang/browser/
+            sudo systemctl restart nginx
