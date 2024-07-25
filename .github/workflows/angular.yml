@@ -60,13 +60,10 @@ jobs:
             sudo git stash
             sudo git fetch --all
             sudo git pull origin main
-            ng build
             sudo chown -R www-data:www-data /var/www/html/myAngular
-            # sudo chown -R azureuser:azureuser /var/www/html/myAngular
             sudo chmod -R 755 /var/www/html/myAngular
             
             sudo chown -R www-data:www-data /var/www/html/myAngular/dist
-            # sudo chown -R azureuser:azureuser /var/www/html/myAngular/dist
             sudo chmod -R 755 /var/www/html/myAngular/dist
 
             sudo find /var/www/html/myAngular -type d -exec chmod 755 {} \;
