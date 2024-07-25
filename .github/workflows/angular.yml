@@ -17,29 +17,34 @@ jobs:
       matrix:
         node-version: [20.x]
     steps:
+      # steps 1-5 are crucial because they ensure the codebase is current, 
+      # dependencies are correctly installed, and the application is properly built for deployment.
+      # if the build process does not need to be repeated and you are sure that the build artifacts are already 
+      # up to date in your repository, you can simplify the deployment process by skipping steps 1 to 5.
+      
       # {1} Checkout the source code
-      - name: Checkout the source code
-        uses: actions/checkout@v3
+      # - name: Checkout the source code
+      #   uses: actions/checkout@v3
 
       # {2} Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
-          cache-dependency-path: package-lock.json
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: ${{ matrix.node-version }}
+      #     cache: "npm"
+      #     cache-dependency-path: package-lock.json
 
       # {3} Install dependencies
-      - name: Install dependencies
-        run: npm ci
+      # - name: Install dependencies
+      #   run: npm ci
 
       # {4} Clean Distribution Directory
-      - name: Clean Distribution Directory
-        run: npm run ci:clean
+      # - name: Clean Distribution Directory
+      #   run: npm run ci:clean
 
       # {5} Build Application
-      - name: Build Application
-        run: npm run ci:build
+      # - name: Build Application
+      #   run: npm run ci:build
 
       # {6} Set up SSH Agent with private key
       - name: Set up SSH
