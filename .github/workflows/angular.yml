@@ -58,4 +58,3 @@ jobs:
           script: |
             cd /var/www/html/myAngular # navigate to your project directory
             git pull
-            pm2 restart /usr/local/bin/ng -- serve -f # force restart if already running
