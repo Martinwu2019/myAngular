@@ -58,7 +58,4 @@ jobs:
           script: |
             cd /var/www/html/myAngular # navigate to your project directory
             git pull
-            nvm use 20
-            npm install
             pm2 start /usr/local/bin/ng -- serve
-
