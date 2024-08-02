@@ -1,6 +1,6 @@
 import {
   BehaviorSubject
-} from "./chunk-B3KX45L5.js";
+} from "./chunk-UYGZEGTL.js";
 export {
   BehaviorSubject
 };

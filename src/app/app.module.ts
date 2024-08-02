@@ -11,6 +11,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
+import { ChatBoxComponent } from './components/chat-box/chat-box.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     LoginComponent,
     SignupComponent,
-    ProfileComponent
+    ProfileComponent,
+    ChatBoxComponent
   ],
   
   imports: [

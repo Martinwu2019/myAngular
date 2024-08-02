@@ -1,0 +1,61 @@
+<div class="chat-icon" (click)="toggleChatBox()">
+  <i class="fa fa-comments"></i>
+</div>
+
+<div class="chat-box" *ngIf="showChatBox">
+  <div class="chat-header">
+    <span>Chat with AI</span>
+    <!-- Dropdown to select model -->
+    <select (change)="onModelChange($event)">
+      <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+      <option value="gpt-4">GPT-4</option>
+    </select>
+    <i class="fa fa-times close-btn" (click)="toggleChatBox()"></i>
+  </div>
+
+  <div class="chat-content" #chatContent>
+    <div *ngFor="let message of messages" [ngClass]="{'user-message': message.isUser, 'ai-message': !message.isUser}">
+      <!-- For AI messages, place the icon at the beginning -->
+      <i *ngIf="!message.isUser" class="fa fa-robot"></i>
+
+      <!-- Message content -->
+      <span>{{ message.text }}</span>
+
+      <!-- Move the user icon to the end if it's a user message -->
+      <i *ngIf="message.isUser" class="fa fa-user"></i> 
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" placeholder="Type a message..." />
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div>
+
+
+
+
+<!-- none bootstrap version -->
+<!-- <div class="chat-icon" (click)="toggleChatBox()">
+    💬
+  </div>
+  <div class="chat-box" *ngIf="showChatBox">
+    <div class="chat-header" (click)="toggleChatBox()">
+      Chat with AI
+      <span class="close-btn">✖</span>
+    </div>
+    <div class="chat-content">
+      <div *ngFor="let message of messages" [ngClass]="{'user-message': message.isUser, 'ai-message': !message.isUser}">
+        <div class="message-icon">
+          <span *ngIf="message.isUser">👤</span>
+          <span *ngIf="!message.isUser">🤖</span>
+        </div>
+        <div class="message-text">{{ message.text }}</div>  
+      </div>
+    </div>
+    <div class="chat-input">
+      <input [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" placeholder="Type a message..."/>
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+   -->

@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
-
+  // private apiUrl = 'http://127.0.0.1:8000/api';
+  private apiUrl = environment.apiUrl;
   constructor() { }
 
   handle(token: any) {
@@ -30,7 +32,7 @@ export class TokenService {
       const payload = this.payload(token);
       if (payload) { // if the token has a valid payload, 
         // and if the issuer of the token is "http://127.0.0.1:8000/api/login"; return true.
-        return (payload.iss === "http://20.188.117.53:8080/api/login") ? true : false; 
+        return (payload.iss === `${this.apiUrl}/login`) ? true : false;
       }
     }
     return false;
@@ -45,7 +47,7 @@ export class TokenService {
     return JSON.parse(atob(payload));
   }
 
-  loggedIn(){
+  loggedIn() {
     return this.isValid();
   }
 }
